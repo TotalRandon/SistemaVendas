@@ -45,8 +45,7 @@ class VendaController extends Controller
         if ($venda->forma_pagamento == 'pix') {
             $venda->data_pagamento = Carbon::now();
             $venda->num_parcelas = 1;
-        } else {
-            $venda->data_pagamento = Carbon::now();
+            $venda->valor_parcela = $venda->valor;
         }
 
         $venda->save();
@@ -90,6 +89,7 @@ class VendaController extends Controller
         $venda->fill($request->only([
             'nome_produto',
             'valor',
+            'forma_pagamento',
             'num_parcelas',
             'valor_parcela',
             'data_pagamento'
