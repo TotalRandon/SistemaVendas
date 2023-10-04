@@ -36,12 +36,12 @@
                     <label for="num_parcelas" class="form-label">Número de Parcelas:</label>
                     <input type="number" name="num_parcelas" id="num_parcelas" class="form-control" value="{{ $venda->num_parcelas }}">
                 </div>
-        
-                <div class="mb-3">
-                    <label for="data_pagamento" class="form-label">Data de Pagamento:</label>
-                    <input type="date" name="data_pagamento" id="data_pagamento" class="form-control" value="{{ $venda->data_pagamento }}">
-                </div>
             @endif
+
+            <div class="mb-3">
+                <label for="data_pagamento" class="form-label">Data de Pagamento:</label>
+                <input type="date" name="data_pagamento" id="data_pagamento" class="form-control" value="{{ $venda->data_pagamento }}">
+            </div>
 
             <button type="submit" class="btn btn-primary">Salvar Alterações</button>
         </form>
