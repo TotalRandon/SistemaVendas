@@ -8,6 +8,7 @@
 <body>
     <div class="container mt-5">
         <h1 class="mb-4">Editar Venda</h1>
+
         <form action="{{ route('update', $venda->id) }}" method="POST">
             @csrf
             @method('PUT')
@@ -15,11 +16,17 @@
             <div class="mb-3">
                 <label for="nome_produto" class="form-label">Nome do Produto:</label>
                 <input type="text" name="nome_produto" id="nome_produto" class="form-control" value="{{ $venda->nome_produto }}">
+                @error('nome_produto')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label for="valor" class="form-label">Valor do Produto:</label>
                 <input type="text" name="valor" id="valor" class="form-control" value="{{ $venda->valor }}">
+                @error('valor')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-3">
@@ -35,6 +42,9 @@
                 <div class="mb-3">
                     <label for="num_parcelas" class="form-label">Número de Parcelas:</label>
                     <input type="number" name="num_parcelas" id="num_parcelas" class="form-control" value="{{ $venda->num_parcelas }}">
+                    @error('num_parcelas')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
             @endif
 
