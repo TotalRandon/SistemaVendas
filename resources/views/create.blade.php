@@ -8,27 +8,38 @@
 <body>
     <div class="container mt-5">
         <h1 class="mb-4">Cadastrar Venda</h1>
+
         <form action="{{ route('store') }}" method="POST">
             @csrf
 
             <div class="mb-3">
                 <label for="id" class="form-label">Cliente:</label>
-                <select name="user_id" id="id" class="form-select">
+                <select name="user_id" id="id" class="form-select @error('user_id') is-invalid @enderror">
                     <option value="">Selecione um cliente</option>
                     @foreach ($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->nome_usuario }}</option>
+                        <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>{{ $user->nome_usuario }}</option>
                     @endforeach
                 </select>
+                @error('user_id')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
+            
             
             <div class="mb-3">
                 <label for="nome_produto" class="form-label">Nome do Produto:</label>
-                <input type="text" name="nome_produto" id="nome_produto" class="form-control">
+                <input type="text" name="nome_produto" id="nome_produto" class="form-control @error('nome_produto') is-invalid @enderror" value="{{ old('nome_produto') }}">
+                @error('nome_produto')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label for="valor" class="form-label">Valor do Produto:</label>
-                <input type="text" name="valor" id="valor" class="form-control">
+                <input type="text" name="valor" id="valor" class="form-control @error('valor') is-invalid @enderror" value="{{ old('valor') }}">
+                @error('valor')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-3">
