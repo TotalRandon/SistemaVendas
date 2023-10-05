@@ -30,7 +30,7 @@ class VendaController extends Controller
     {
         $request->validate([
             'nome_produto' => 'required',
-            'valor' => 'required',
+            'valor' => 'required|numeric',
             'forma_pagamento' => 'required',
         ]);
 
@@ -46,6 +46,9 @@ class VendaController extends Controller
             $venda->data_pagamento = Carbon::now();
             $venda->num_parcelas = 1;
             $venda->valor_parcela = $venda->valor;
+        }
+        else {
+            $venda->data_pagamento = Carbon::now();
         }
 
         $venda->save();
